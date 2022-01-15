@@ -69,8 +69,13 @@ func TestReverse2(t *testing.T) {
 // BenchmarkReverse-12    	 1308486	       923.2 ns/op	     872 B/op	      31 allocs/op
 // PASS
 func BenchmarkReverse(b *testing.B) {
+	var reversed string
 	for n := 0; n < b.N; n++ {
-		reverse("a!!!b.c.d,e'f,ghi")
+		reversed = reverse("a!!!b.c.d,e'f,ghi")
+	}
+
+	if len(reversed) == 0 {
+		b.Fatal()
 	}
 }
 
@@ -78,7 +83,12 @@ func BenchmarkReverse(b *testing.B) {
 // BenchmarkReverse2-12    	27015704	        42.85 ns/op	      24 B/op	       1 allocs/op
 // PASS
 func BenchmarkReverse2(b *testing.B) {
+	var reversed string
 	for n := 0; n < b.N; n++ {
-		reverse2("a!!!b.c.d,e'f,ghi")
+		reversed = reverse2("a!!!b.c.d,e'f,ghi")
+	}
+
+	if len(reversed) == 0 {
+		b.Fatal()
 	}
 }
